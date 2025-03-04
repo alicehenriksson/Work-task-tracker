@@ -1,45 +1,45 @@
 # AI-Assisted App Development Workshop  
-Welcome to the AI-Assisted application development workshop.
+Welcome to the AI-Assisted app development workshop! 🚀
 
 In this session, we’ll explore AI coding tools and use Cursor AI to build a simple web application quickly.
 
 ## Overview
 - Learn about AI-powered coding tools
 - Use Cursor AI to assist in building an application
-- Gain hands-on experience in AI-assisted development
+- Hands-on experience with AI-assisted development
 
 ## **Prerequisites**
 Before we begin, please ensure you have the following installed:
 
 ### **Required Tools**
-**[Cursor AI](https://www.cursor.com/)** (IDE with AI assistance)
-**[Node.js](https://nodejs.org/en/download)** (Backend JavaScript runtime)
+- [Cursor AI](https://www.cursor.com/) (Code editor with AI assistance)
+- [Node.js](https://nodejs.org/en/download) (Backend JavaScript runtime)
 
 ### **Optional Tools**
-**[Git Fork](https://git-fork.com/)** (Git GUI for managing repositories) 
+- [Git Fork](https://git-fork.com/) (Makes reviewing changes and reverting a bit easier) 
 
 ## **Installation Guide**
 Follow these steps to set up your development environment.
 
-### Install Cursor AI
-- **Mac:**  
-  1. Download **Cursor AI** from [cursor.com](https://www.cursor.com/)
-  2. Open the `.dmg` file and drag **Cursor** into the `Applications` folder
-  3. Open **Cursor AI** and sign in (if required)
+### 1. Install Cursor AI
+**Mac:**  
+1. Download **Cursor AI** from [cursor.com](https://www.cursor.com/)
+2. Open the `.dmg` file and drag **Cursor** into the `Applications` folder
+3. Open **Cursor AI** and sign in (if required)
 
-- **Windows:**  
-  1. Download **Cursor AI** from [cursor.com](https://www.cursor.com/)
-  2. Run the `.exe` installer and follow the setup instructions
-  3. Open **Cursor AI** and sign in (if required)
+**Windows:**  
+1. Download **Cursor AI** from [cursor.com](https://www.cursor.com/)
+2. Run the `.exe` installer and follow the setup instructions
+3. Open **Cursor AI** and sign in (if required)
 
-### Install Node.js
-- **Mac (Using Homebrew)**:
+### 2. Install Node.js
+**Mac (Using Homebrew)**:
   
   ```sh
   brew install node
   ```
 
-- **Windows**:
+**Windows**:
 
   1. Download Node.js from [nodejs.org](https://nodejs.org/en/download)
   2. Run the installer and follow the setup instructions
@@ -50,7 +50,7 @@ Follow these steps to set up your development environment.
   npm -v
   ```
 
-### Clone or download the template project
+### 3. Clone or download the template project
 
 A template project has been created to make setup a bit easier, you can use one of the options below.
 
@@ -67,13 +67,13 @@ cd ai-app-development-workshop
 2. Click **"Download ZIP"**
 3. Extract the folder to a convenient location on your computer
 
-### Open the project in Cursor AI
+### 4. Open the project in Cursor AI
 
 1. Launch Cursor AI
 2. Click **"Open Folder"** and select the project directory
 3. Open `README.md` in Cursor AI and follow the next steps
 
-### Start the project
+### 5. Start the project
 
 Inside Cursor AI, open a **Terminal** and run:
 
@@ -135,7 +135,8 @@ Create a Pomodoro Timer in Next.js with React state.
 - Instead of “Create a todo app,” try “Create a todo app with add, complete and delete functionality.”
 - If an output isn’t perfect, refine your prompt rather than expecting a full app in one go.
 - If something breaks, ask Cursor “Why isn’t this working?”
-- Break large tasks into smaller prompts, for example first ask for a form, then ask for state management, then ask for styling.
+- Copy/paste errors into Cursor to help debug the issue.
+- Break large tasks into smaller prompts, for example, first ask for a form, then ask for state management, then ask for styling.
 
 ## **Deploying (Optional)**
 
@@ -163,3 +164,5 @@ By the end of this workshop, you’ll have:
 - Built a functional web app
 - Learned how to guide AI for development
 - (Optional) Deployed your app online
+
+Enjoy! 🏆
