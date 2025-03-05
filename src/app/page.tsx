@@ -10,11 +10,11 @@ export default function Home() {
         
         <div className="space-y-4">
           <p className="text-lg">
-            Welcome to this hands-on workshop where we'll explore how AI-powered coding tools are transforming software development, allowing people to move from idea to application faster than ever.
+            Welcome to this hands-on workshop where we&apos;ll explore how AI-powered coding tools are transforming software development, allowing people to move from idea to application faster than ever.
           </p>
           
           <p className="text-lg">
-            In this workshop, you'll:
+            In this workshop, you&apos;ll:
           </p>
           
           <ul className="list-disc list-inside space-y-2 ml-4">
@@ -25,7 +25,7 @@ export default function Home() {
           </ul>
 
           <p className="text-lg mt-6">
-            Whether you're new to AI coding or looking to refine your workflow, this session will provide some helpful tips to boost your productivity.
+            Whether you&apos;re new to AI coding or looking to refine your workflow, this session will provide some helpful tips to boost your productivity.
           </p>
         </div>
 

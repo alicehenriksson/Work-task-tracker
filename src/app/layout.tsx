@@ -12,10 +12,10 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata = {
-  title: 'AI-Assisted Development Workshop',
-  description: 'Learn how to leverage AI coding tools to build applications faster and more efficiently in this hands-on workshop.',
-}
+export const metadata: Metadata = {
+  title: "AI-Assisted App Development Workshop",
+  description: "A hands-on workshop exploring AI-powered coding tools and their impact on software development.",
+};
 
 export default function RootLayout({
   children,
