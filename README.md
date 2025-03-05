@@ -8,6 +8,8 @@ In this session, we’ll explore AI coding tools and use Cursor AI to build a si
 - Use Cursor AI to assist in building an application
 - Hands-on experience with AI-assisted development
 
+You can see this template project running here: https://demo-2uxj32rii-scottjs-projects-82fb406a.vercel.app
+
 ## **Prerequisites**
 Before we begin, please ensure you have the following installed:
 
