@@ -18,6 +18,14 @@ Before we begin, please ensure you have the following installed:
 ### **Optional Tools**
 - [Git Fork](https://git-fork.com/) (Makes reviewing changes and reverting a bit easier) 
 
+### Alternative Tools
+
+- [Replit](https://replit.com/) (Web-based alternative to Cursor, useful if there's setup problems during the session)
+
+Replit is a useful alternative if for some reason you're having problems with setting up Cursor. 
+
+To use Replit in the workshop, create an account, go to "**Templates**", find Next.js in the list, click "**Use Template**". 
+
 ## **Installation Guide**
 Follow these steps to set up your development environment.
 
@@ -155,6 +163,12 @@ Run:
 ```
 vercel
 ```
+
+## Useful Links
+
+- Keyboard Shortcuts: https://docs.cursor.com/kbd
+- An idiots guide to big projects with Cursor: https://forum.cursor.com/t/an-idiots-guide-to-bigger-projects/23646
+- Mastering big codebases: https://forum.cursor.com/t/mastering-long-codebases-with-cursor-gemini-and-claude-a-practical-guide/38240
 
 ## Workshop Goals
 
