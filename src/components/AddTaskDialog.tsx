@@ -27,13 +27,13 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Calendar } from "@/components/ui/calendar";
-import { Task } from "@/lib/data";
+import { Task } from "@/lib/tasks";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
-import { useTasks } from "@/lib/TaskContext";
+import { useTasks } from "@/lib/tasks";
 import { cn } from "@/lib/utils";
 import { Slider } from "@/components/ui/slider";
 import { format } from "date-fns";

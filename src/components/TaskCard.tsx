@@ -1,6 +1,6 @@
 'use client';
 
-import { Task } from "@/lib/data";
+import { Task } from "@/lib/tasks";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Link2 } from "lucide-react";
