@@ -333,7 +333,7 @@ export function TaskDialog({ task, trigger, open, onOpenChange }: TaskDialogProp
               </Button>
               <Button
                 type="submit"
-                className="bg-blue-600 text-white hover:bg-blue-700"
+                variant="blue"
                 disabled={!form.getValues().title || !isDirty || isSaving}
               >
                 {isSaving ? 'Saving...' : isEditing ? 'Save Changes' : 'Create Task'}

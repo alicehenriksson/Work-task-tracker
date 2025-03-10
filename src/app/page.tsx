@@ -62,7 +62,7 @@ export default function Home() {
         </Tabs>
         <TaskDialog 
           trigger={
-            <Button className="w-full sm:w-auto bg-blue-600 text-white hover:bg-blue-700">
+            <Button variant="blue" className="w-full sm:w-auto">
               <Plus className="mr-2 h-4 w-4" />
               Add Task
             </Button>
