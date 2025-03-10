@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Link2 } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import { CollaboratorAvatar } from "@/components/CollaboratorAvatar";
 
 function getStatusColor(status: Task['status']) {
   switch (status) {
@@ -57,46 +58,13 @@ function getInitialsColor(name: string) {
   return colors[index];
 }
 
-interface CollaboratorAvatarProps {
-  name: string;
-  index: number;
-}
-
 interface TaskCardProps {
   task: Task;
 }
 
 export function TaskCard({ task }: TaskCardProps) {
   const collaborators = task.collaborators ? task.collaborators.split(',').map(c => c.trim()) : [];
-  
-  // Sort collaborators to ensure current user is first
-  const sortedCollaborators = collaborators.sort((a, b) => {
-    if (a.toLowerCase() === CURRENT_USER.toLowerCase()) return -1;
-    if (b.toLowerCase() === CURRENT_USER.toLowerCase()) return 1;
-    return 0;
-  });
-
-  function CollaboratorAvatar({ name, index }: CollaboratorAvatarProps) {
-    const initial = name.trim()[0]?.toUpperCase() || '?';
-    const isCurrentUser = name.toLowerCase() === CURRENT_USER.toLowerCase();
-    
-    return (
-      <div 
-        className={cn(
-          "w-8 h-8 rounded-full flex items-center justify-center text-white",
-          isCurrentUser ? "text-base font-bold" : "text-sm font-medium",
-          getInitialsColor(name)
-        )}
-        style={{ 
-          marginRight: index < sortedCollaborators.length - 1 ? '-0.5rem' : '0',
-          zIndex: sortedCollaborators.length - index 
-        }}
-        title={name}
-      >
-        {initial}
-      </div>
-    );
-  }
+  const sortedCollaborators = [...collaborators].sort();
 
   return (
     <Link href={`/task/${task.id}`} className="block transition-transform hover:scale-[1.02]">
@@ -131,12 +99,12 @@ export function TaskCard({ task }: TaskCardProps) {
                 </Badge>
               </div>
               {sortedCollaborators.length > 0 && (
-                <div className="flex flex-row">
+                <div className="flex -space-x-2">
                   {sortedCollaborators.map((collaborator, index) => (
                     <CollaboratorAvatar 
                       key={collaborator} 
                       name={collaborator}
-                      index={index}
+                      className="border-2 border-background"
                     />
                   ))}
                 </div>

@@ -7,6 +7,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { useTasks } from "@/lib/TaskContext";
 import { Input } from "@/components/ui/input";
+import { LogoutButton } from "@/components/LogoutButton";
 import {
   Select,
   SelectContent,
@@ -75,7 +76,10 @@ export default function TasksPage() {
 
   return (
     <main className="min-h-screen p-8 md:p-24 max-w-7xl mx-auto">
-      <h1 className="text-3xl font-bold mb-8">Alice Henriksson's Tasks</h1>
+      <div className="flex items-center justify-between mb-8">
+        <h1 className="text-3xl font-bold">Alice Henriksson's Tasks</h1>
+        <LogoutButton />
+      </div>
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between mb-8">
         <Tabs defaultValue="tasks" className="w-full sm:w-[400px]">
           <TabsList className="w-full">
@@ -88,7 +92,6 @@ export default function TasksPage() {
         <TaskDialog 
           trigger={
             <Button variant="blue" className="w-full sm:w-auto">
-              <Plus className="mr-2 h-4 w-4" />
               Add Task
             </Button>
           }

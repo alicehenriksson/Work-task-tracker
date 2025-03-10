@@ -63,7 +63,6 @@ export default function Home() {
         <TaskDialog 
           trigger={
             <Button variant="blue" className="w-full sm:w-auto">
-              <Plus className="mr-2 h-4 w-4" />
               Add Task
             </Button>
           }
