@@ -1,8 +1,9 @@
 'use client';
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
+import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Sector } from "recharts";
 import { TaskStatus } from "@/lib/data";
+import { useState } from "react";
 
 const COLORS = {
   "Completed": "#10B981",
@@ -33,11 +34,38 @@ const CustomTooltip = ({ active, payload }: any) => {
   return null;
 };
 
+const renderActiveShape = (props: any) => {
+  const { cx, cy, innerRadius, outerRadius, startAngle, endAngle, fill } = props;
+
+  return (
+    <g>
+      <Sector
+        cx={cx}
+        cy={cy}
+        innerRadius={innerRadius}
+        outerRadius={outerRadius + 10}
+        startAngle={startAngle}
+        endAngle={endAngle}
+        fill={fill}
+      />
+    </g>
+  );
+};
+
 export function TaskDistributionChart({ data }: TaskDistributionChartProps) {
+  const [activeIndex, setActiveIndex] = useState<number>(-1);
   const total = data.reduce((sum, item) => sum + item.value, 0);
   
   // Add total to each data point for percentage calculation in tooltip
   const dataWithTotal = data.map(item => ({ ...item, total }));
+
+  const onPieEnter = (_: any, index: number) => {
+    setActiveIndex(index);
+  };
+
+  const onPieLeave = () => {
+    setActiveIndex(-1);
+  };
 
   return (
     <Card className="overflow-hidden">
@@ -50,15 +78,23 @@ export function TaskDistributionChart({ data }: TaskDistributionChartProps) {
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
                 <Pie
+                  activeIndex={activeIndex === -1 ? undefined : activeIndex}
+                  activeShape={renderActiveShape}
                   data={dataWithTotal}
                   cx="50%"
                   cy="50%"
-                  innerRadius={120}
+                  innerRadius={100}
                   outerRadius={150}
                   fill="#8884d8"
                   dataKey="value"
                   paddingAngle={0}
                   strokeWidth={0}
+                  onMouseEnter={onPieEnter}
+                  onMouseLeave={onPieLeave}
+                  isAnimationActive={true}
+                  animationBegin={0}
+                  animationDuration={800}
+                  animationEasing="ease-in-out"
                 >
                   {data.map((entry, index) => (
                     <Cell
@@ -67,7 +103,11 @@ export function TaskDistributionChart({ data }: TaskDistributionChartProps) {
                     />
                   ))}
                 </Pie>
-                <Tooltip content={<CustomTooltip />} />
+                <Tooltip 
+                  content={<CustomTooltip />}
+                  animationDuration={300}
+                  animationEasing="ease-in-out"
+                />
               </PieChart>
             </ResponsiveContainer>
           </div>
