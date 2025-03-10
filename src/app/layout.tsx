@@ -1,30 +1,30 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { Providers } from "./providers";
+import { getServerSession } from "next-auth";
+import { SessionProvider } from "next-auth/react";
+import { options } from "./api/auth/[...nextauth]/route";
 
-const inter = Inter({
-  subsets: ["latin"],
-  display: 'swap',
-  variable: '--font-inter',
-});
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "AI-Assisted App Development Workshop",
-  description: "A hands-on workshop exploring AI-powered coding tools and their impact on software development.",
+  title: "Work Task Tracker",
+  description: "Track and manage your work tasks efficiently",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
+  const session = await getServerSession(options);
+
   return (
-    <html lang="en" className={inter.variable}>
-      <body className={`${inter.className} font-sans antialiased`}>
-        <Providers>
+    <html lang="en">
+      <body className={inter.className}>
+        <SessionProvider session={session}>
           {children}
-        </Providers>
+        </SessionProvider>
       </body>
     </html>
   );
