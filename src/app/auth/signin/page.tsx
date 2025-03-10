@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { signIn } from "next-auth/react";
-import { Github, Mail } from "lucide-react";
+import { Github } from "lucide-react";
 
 export default function SignIn() {
   return (
@@ -17,13 +17,6 @@ export default function SignIn() {
           </p>
         </div>
         <div className="grid gap-2">
-          <Button 
-            variant="outline" 
-            onClick={() => signIn("google", { callbackUrl: "/" })}
-          >
-            <Mail className="mr-2 h-4 w-4" />
-            Continue with Google
-          </Button>
           <Button 
             variant="outline" 
             onClick={() => signIn("github", { callbackUrl: "/" })}
