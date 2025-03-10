@@ -1,7 +1,7 @@
 'use client';
 
 import { notFound } from "next/navigation";
-import { Task } from "@/lib/data";
+import { Task } from "@/lib/tasks";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -9,7 +9,7 @@ import { Link2, ChevronLeft, Pencil } from "lucide-react";
 import Link from "next/link";
 import { TaskDialog } from "@/components/AddTaskDialog";
 import { useState } from "react";
-import { useTasks } from "@/lib/TaskContext";
+import { useTasks } from "@/lib/tasks";
 import { cn } from "@/lib/utils";
 import { CollaboratorAvatar } from "@/components/CollaboratorAvatar";
 

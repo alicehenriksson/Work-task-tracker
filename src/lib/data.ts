@@ -14,6 +14,7 @@ export interface Task {
   dateStarted: Date;
   createdAt: Date;
   updatedAt: Date;
+  ownerId: string;
 }
 
 export const tasks: Task[] = [
@@ -28,6 +29,7 @@ export const tasks: Task[] = [
     dateStarted: new Date('2024-03-01'),
     createdAt: new Date('2024-03-01'),
     updatedAt: new Date('2024-03-02'),
+    ownerId: 'user_1',
   },
   {
     id: '2',
@@ -41,6 +43,7 @@ export const tasks: Task[] = [
     dateStarted: new Date('2024-03-02'),
     createdAt: new Date('2024-03-02'),
     updatedAt: new Date('2024-03-03'),
+    ownerId: 'user_1',
   },
   {
     id: '3',
@@ -53,6 +56,7 @@ export const tasks: Task[] = [
     dateStarted: new Date('2024-03-03'),
     createdAt: new Date('2024-03-03'),
     updatedAt: new Date('2024-03-03'),
+    ownerId: 'user_1',
   },
   {
     id: '4',
@@ -64,6 +68,7 @@ export const tasks: Task[] = [
     dateStarted: new Date('2024-03-03'),
     createdAt: new Date('2024-03-03'),
     updatedAt: new Date('2024-03-03'),
+    ownerId: 'user_1',
   },
   {
     id: '5',
@@ -76,6 +81,7 @@ export const tasks: Task[] = [
     dateStarted: new Date('2024-02-28'),
     createdAt: new Date('2024-02-28'),
     updatedAt: new Date('2024-03-01'),
+    ownerId: 'user_1',
   },
   {
     id: '6',
@@ -89,5 +95,6 @@ export const tasks: Task[] = [
     dateStarted: new Date('2024-03-03'),
     createdAt: new Date('2024-03-03'),
     updatedAt: new Date('2024-03-03'),
+    ownerId: 'user_1',
   },
 ]; 
