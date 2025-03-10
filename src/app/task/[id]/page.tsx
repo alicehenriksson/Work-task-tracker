@@ -5,7 +5,7 @@ import { Task } from "@/lib/data";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Link2, ChevronLeft } from "lucide-react";
+import { Link2, ChevronLeft, Pencil } from "lucide-react";
 import Link from "next/link";
 import { TaskDialog } from "@/components/AddTaskDialog";
 import { useState } from "react";
@@ -63,7 +63,15 @@ export default function TaskPage({ params }: TaskPageProps) {
           </Link>
           <h1 className="text-2xl font-bold">{task.title}</h1>
         </div>
-        <TaskDialog task={task} />
+        <TaskDialog 
+          task={task}
+          trigger={
+            <Button variant="outline" size="sm">
+              <Pencil className="mr-2 h-4 w-4" />
+              Edit Task
+            </Button>
+          }
+        />
       </div>
 
       <div className="relative flex">

@@ -1,184 +1,81 @@
-# AI-Assisted App Development Workshop  
-Welcome to the AI-Assisted app development workshop! 🚀
+# Work Task Tracker
 
-In this session, we’ll explore AI coding tools and use Cursor AI to build a simple web application quickly.
+A collaborative task management application built with Next.js, Prisma, and NextAuth.js.
 
-## Overview
-- Learn about AI-powered coding tools
-- Use Cursor AI to assist in building an application
-- Hands-on experience with AI-assisted development
+## Features
 
-You can see this template project running here: https://demo-2uxj32rii-scottjs-projects-82fb406a.vercel.app
+- User authentication with Google and GitHub
+- Task creation and management
+- Collaborative features
+- Real-time updates
+- Mobile responsive design
 
-## **Prerequisites**
-Before we begin, please ensure you have the following installed:
+## Setup
 
-### **Required Tools**
-- [Cursor AI](https://www.cursor.com/) (Code editor with AI assistance)
-- [Node.js](https://nodejs.org/en/download) (Backend JavaScript runtime)
+1. Clone the repository
+2. Run the setup script:
+   ```bash
+   chmod +x setup.sh
+   ./setup.sh
+   ```
 
-### **Optional Tools**
-- [Git Fork](https://git-fork.com/) (Makes reviewing changes and reverting a bit easier) 
+3. Set up your database:
+   - Create a PostgreSQL database
+   - Update the DATABASE_URL in .env with your database credentials
 
-### Alternative Tools
+4. Set up OAuth credentials:
+   - Create a Google OAuth application: https://console.cloud.google.com/
+   - Create a GitHub OAuth application: https://github.com/settings/developers
+   - Add the credentials to .env
 
-- [Replit](https://replit.com/) (Web-based alternative to Cursor, useful if there's setup problems during the session)
+5. Initialize the database:
+   ```bash
+   npx prisma db push
+   ```
 
-Replit is a useful alternative if for some reason you're having problems with setting up Cursor. 
+6. Run the development server:
+   ```bash
+   npm run dev
+   ```
 
-To use Replit in the workshop, create an account, go to "**Templates**", find Next.js in the list, click "**Use Template**". 
+## Deployment
 
-## **Installation Guide**
-Follow these steps to set up your development environment.
+### Vercel Deployment
 
-### 1. Install Cursor AI
-**Mac:**  
-1. Download **Cursor AI** from [cursor.com](https://www.cursor.com/)
-2. Open the `.dmg` file and drag **Cursor** into the `Applications` folder
-3. Open **Cursor AI** and sign in (if required)
+1. Push your code to GitHub
+2. Create a new project on Vercel
+3. Connect your GitHub repository
+4. Add the following environment variables in Vercel:
+   - DATABASE_URL
+   - NEXTAUTH_SECRET
+   - GOOGLE_CLIENT_ID
+   - GOOGLE_CLIENT_SECRET
+   - GITHUB_ID
+   - GITHUB_SECRET
 
-**Windows:**  
-1. Download **Cursor AI** from [cursor.com](https://www.cursor.com/)
-2. Run the `.exe` installer and follow the setup instructions
-3. Open **Cursor AI** and sign in (if required)
+5. Deploy!
 
-### 2. Install Node.js
-**Mac (Using Homebrew)**:
-  
-  ```sh
-  brew install node
-  ```
+### Database Setup
 
-**Windows**:
+1. Create a PostgreSQL database:
+   - Option 1: Use Supabase (Recommended)
+     - Create a new project on Supabase
+     - Get the connection string
+     - Add it to your environment variables
+   
+   - Option 2: Use any PostgreSQL provider
+     - Set up a PostgreSQL database
+     - Update the DATABASE_URL in your environment variables
 
-  1. Download Node.js from [nodejs.org](https://nodejs.org/en/download)
-  2. Run the installer and follow the setup instructions
-  3. Verify installation:
+## Development
 
-  ```
-  node -v
-  npm -v
-  ```
+To add new features or fix bugs:
 
-### 3. Clone or download the template project
+1. Create a new branch
+2. Make your changes
+3. Run tests: `npm test`
+4. Create a pull request
 
-A template project has been created to make setup a bit easier, you can use one of the options below.
+## License
 
-**Option 1: Clone using Git (Recommended)**
-
-```
-git clone git@github.com:KomodoHQ/ai-app-development-workshop.git
-cd ai-app-development-workshop
-```
-
-**Option 2: Download as ZIP**
-
-1. Open **[this repo](http://bit.ly/41HQKH5)**
-2. Click **"Download ZIP"**
-3. Extract the folder to a convenient location on your computer
-
-### 4. Open the project in Cursor AI
-
-1. Launch Cursor AI
-2. Click **"Open Folder"** and select the project directory
-3. Open `README.md` in Cursor AI and follow the next steps
-
-### 5. Start the project
-
-Inside Cursor AI, open a **Terminal** and run:
-
-```
-npm install
-npm run dev
-```
-
-Your app should now be running at **http://localhost:3000** and you should be able to visit this in your browser.
-
-## **Example Ideas and Prompts**
-
-Below are some example projects you can try building using Cursor AI, feel free to try your own ideas!
-
-### Simple Todo List
-
-Add tasks, mark them as complete, delete tasks.
-
-#### **Prompt:**
-
-```
-Create a simple Todo List in Next.js with Tailwind CSS.
-- Use React state to manage todos
-- Each todo should have a "Mark as Done" button
-- Display completed todos with a strikethrough effect
-- Style it using Tailwind CSS
-```
-
-### **Recipe Manager**
-
-Add meals, ingredients, and randomly pick a meal.
-
-#### Prompt:
-
-```
-Create a Recipe Manager app in Next.js with TypeScript.
-- Users should be able to add a new recipe with a name, ingredients, and description
-- Display a list of all recipes
-- Add a "Pick a Random Recipe" button
-- Style it using Tailwind CSS
-```
-
-### Pomodoro Timer
-
-A simple timer for productivity with 25-minute work sessions.
-
-#### Prompt:
-
-```
-Create a Pomodoro Timer in Next.js with React state.
-- Display a countdown timer starting from 25 minutes
-- Include "Start", "Pause", and "Reset" buttons
-- When time is up, play a sound or show an alert
-- Style it using Tailwind CSS
-```
-
-## **Prompting Best Practices**
-
-- Instead of “Create a todo app,” try “Create a todo app with add, complete and delete functionality.”
-- If an output isn’t perfect, refine your prompt rather than expecting a full app in one go.
-- If something breaks, ask Cursor “Why isn’t this working?”
-- Copy/paste errors into Cursor to help debug the issue.
-- Break large tasks into smaller prompts, for example, first ask for a form, then ask for state management, then ask for styling.
-
-## **Deploying (Optional)**
-
-If you want to share your app online, you can use **Vercel** for free hosting.
-
-### Install Vercel CLI
-
-```
-npm install -g vercel
-```
-
-### Deploy
-
-Run:
-
-```
-vercel
-```
-
-## Useful Links
-
-- Keyboard Shortcuts: https://docs.cursor.com/kbd
-- An idiots guide to big projects with Cursor: https://forum.cursor.com/t/an-idiots-guide-to-bigger-projects/23646
-- Mastering big codebases: https://forum.cursor.com/t/mastering-long-codebases-with-cursor-gemini-and-claude-a-practical-guide/38240
-
-## Workshop Goals
-
-By the end of this workshop, you’ll have: 
-
-- Installed AI-powered coding tools
-- Built a functional web app
-- Learned how to guide AI for development
-- (Optional) Deployed your app online
-
-Enjoy! 🏆
+MIT

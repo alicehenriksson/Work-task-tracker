@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/select";
 import { useState, useMemo } from "react";
 import { Task } from "@/lib/data";
+import { Plus } from "lucide-react";
 
 type SortOption = 'updatedAt' | 'createdAt' | 'category' | 'status' | 'estimatedHours';
 
@@ -75,16 +76,23 @@ export default function TasksPage() {
   return (
     <main className="min-h-screen p-8 md:p-24 max-w-7xl mx-auto">
       <h1 className="text-3xl font-bold mb-8">Alice Henriksson's Tasks</h1>
-      <div className="flex justify-between items-center mb-8">
-        <Tabs defaultValue="tasks" className="w-[400px]">
-          <TabsList>
-            <TabsTrigger value="overview" asChild>
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between mb-8">
+        <Tabs defaultValue="tasks" className="w-full sm:w-[400px]">
+          <TabsList className="w-full">
+            <TabsTrigger value="overview" className="flex-1" asChild>
               <Link href="/">Overview</Link>
             </TabsTrigger>
             <TabsTrigger value="tasks" className="flex-1">Tasks</TabsTrigger>
           </TabsList>
         </Tabs>
-        <TaskDialog trigger={<Button>Add Task</Button>} />
+        <TaskDialog 
+          trigger={
+            <Button className="w-full sm:w-auto bg-blue-600 text-white hover:bg-blue-700">
+              <Plus className="mr-2 h-4 w-4" />
+              Add Task
+            </Button>
+          }
+        />
       </div>
 
       <div className="flex gap-4 mb-6">

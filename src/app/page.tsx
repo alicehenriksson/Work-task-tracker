@@ -10,6 +10,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { useTasks } from "@/lib/TaskContext";
 import { LogoutButton } from "@/components/LogoutButton";
+import { Plus } from "lucide-react";
 
 export default function Home() {
   const { tasks } = useTasks();
@@ -59,8 +60,16 @@ export default function Home() {
             </TabsTrigger>
           </TabsList>
         </Tabs>
-        <TaskDialog trigger={<Button className="w-full sm:w-auto">Add Task</Button>} />
+        <TaskDialog 
+          trigger={
+            <Button className="w-full sm:w-auto bg-blue-600 text-white hover:bg-blue-700">
+              <Plus className="mr-2 h-4 w-4" />
+              Add Task
+            </Button>
+          }
+        />
       </div>
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
         <TaskDistributionChart data={pieData} />
 
