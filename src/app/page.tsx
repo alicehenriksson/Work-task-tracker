@@ -8,7 +8,7 @@ import { TaskCard } from "@/components/TaskCard";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { useTasks } from "@/lib/TaskContext";
+import { useTasks } from "@/lib/tasks";
 import { LogoutButton } from "@/components/LogoutButton";
 import { Plus } from "lucide-react";
 import { Navbar } from "@/components/Navbar";

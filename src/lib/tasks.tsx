@@ -3,7 +3,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 
-type Task = {
+export type Task = {
   id: string;
   title: string;
   description?: string;
@@ -13,6 +13,9 @@ type Task = {
   estimatedHours: number;
   externalLink?: string;
   ownerId: string;
+  createdAt: Date;
+  updatedAt: Date;
+  collaborators?: string;
 };
 
 export type TaskContextType = {

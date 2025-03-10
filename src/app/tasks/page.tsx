@@ -5,7 +5,7 @@ import { TaskDialog } from "@/components/AddTaskDialog";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { useTasks } from "@/lib/TaskContext";
+import { useTasks } from "@/lib/tasks";
 import { Input } from "@/components/ui/input";
 import { LogoutButton } from "@/components/LogoutButton";
 import {
@@ -16,7 +16,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useState, useMemo } from "react";
-import { Task } from "@/lib/data";
+import { Task } from "@/lib/tasks";
 import { Plus } from "lucide-react";
 import { Navbar } from "@/components/Navbar";
 import { Skeleton } from "@/components/ui/skeleton";
