@@ -39,6 +39,7 @@ import { Slider } from "@/components/ui/slider";
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { useSession } from "next-auth/react";
 
 const categoryStyles = {
   Design: "text-purple-500 border-purple-200 bg-purple-50",
@@ -79,6 +80,7 @@ export function TaskDialog({ task, trigger, open, onOpenChange }: TaskDialogProp
   const [isSaving, setIsSaving] = useState(false);
   const isEditing = !!task;
   const { addTask, updateTask, tasks } = useTasks();
+  const { data: session } = useSession();
 
   const form = useForm<TaskFormValues>({
     resolver: zodResolver(taskFormSchema),
@@ -98,18 +100,26 @@ export function TaskDialog({ task, trigger, open, onOpenChange }: TaskDialogProp
   const isDirty = form.formState.isDirty;
 
   async function onSubmit(data: TaskFormValues) {
+    if (!session?.user?.id) {
+      toast.error('You must be logged in to create or edit tasks');
+      return;
+    }
+
     setIsSaving(true);
     try {
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 500));
       
       if (isEditing && task) {
-        updateTask(task.id, data);
+        await updateTask(task.id, data);
         toast.success('Task updated successfully', {
           description: data.title,
         });
       } else {
-        addTask(data);
+        await addTask({
+          ...data,
+          ownerId: session.user.id,
+        });
         toast.success('Task created successfully', {
           description: data.title,
         });
