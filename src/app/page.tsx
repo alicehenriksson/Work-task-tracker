@@ -13,10 +13,26 @@ import { LogoutButton } from "@/components/LogoutButton";
 import { Plus } from "lucide-react";
 import { Navbar } from "@/components/Navbar";
 import { Skeleton } from "@/components/ui/skeleton";
+import { useSession } from "next-auth/react";
 
 export default function Home() {
   const { tasks, loading, error } = useTasks();
+  const { data: session } = useSession();
   
+  if (!session) {
+    return (
+      <div>
+        <Navbar />
+        <main className="min-h-screen p-4 md:p-8 lg:p-24 max-w-7xl mx-auto">
+          <div className="flex flex-col items-center justify-center space-y-4">
+            <h1 className="text-3xl font-bold">Welcome to Task Tracker</h1>
+            <p className="text-muted-foreground">Please sign in to manage your tasks.</p>
+          </div>
+        </main>
+      </div>
+    );
+  }
+
   if (loading) {
     return (
       <div>
@@ -74,7 +90,7 @@ export default function Home() {
       <Navbar />
       <main className="min-h-screen p-4 md:p-8 lg:p-24 max-w-7xl mx-auto">
         <div className="flex items-center justify-between mb-8">
-          <h1 className="text-3xl font-bold">Alice Henriksson's Tasks</h1>
+          <h1 className="text-3xl font-bold">{session.user.name}'s Tasks</h1>
           <LogoutButton />
         </div>
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between mb-8">
