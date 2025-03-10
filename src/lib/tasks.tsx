@@ -15,7 +15,7 @@ type Task = {
   ownerId: string;
 };
 
-type TaskContextType = {
+export type TaskContextType = {
   tasks: Task[];
   loading: boolean;
   error: Error | null;

@@ -11,10 +11,34 @@ import { Button } from "@/components/ui/button";
 import { useTasks } from "@/lib/TaskContext";
 import { LogoutButton } from "@/components/LogoutButton";
 import { Plus } from "lucide-react";
+import { Navbar } from "@/components/Navbar";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export default function Home() {
-  const { tasks } = useTasks();
+  const { tasks, loading, error } = useTasks();
   
+  if (loading) {
+    return (
+      <div>
+        <Navbar />
+        <main className="container mx-auto py-6">
+          <Skeleton className="h-[400px] w-full" />
+        </main>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div>
+        <Navbar />
+        <main className="container mx-auto py-6">
+          <div className="text-red-500">Error loading tasks: {error.message}</div>
+        </main>
+      </div>
+    );
+  }
+
   // Calculate task statistics
   const taskStats = tasks.reduce(
     (acc, task) => {
@@ -46,101 +70,104 @@ export default function Home() {
     .sort((a, b) => b.updatedAt.getTime() - a.updatedAt.getTime());
 
   return (
-    <main className="min-h-screen p-4 md:p-8 lg:p-24 max-w-7xl mx-auto">
-      <div className="flex items-center justify-between mb-8">
-        <h1 className="text-3xl font-bold">Alice Henriksson's Tasks</h1>
-        <LogoutButton />
-      </div>
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between mb-8">
-        <Tabs defaultValue="overview" className="w-full sm:w-[400px]">
-          <TabsList className="w-full">
-            <TabsTrigger value="overview" className="flex-1">Overview</TabsTrigger>
-            <TabsTrigger value="tasks" className="flex-1" asChild>
-              <Link href="/tasks">Tasks</Link>
-            </TabsTrigger>
-          </TabsList>
-        </Tabs>
-        <TaskDialog 
-          trigger={
-            <Button variant="blue" className="w-full sm:w-auto">
-              Add Task
-            </Button>
-          }
-        />
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-        <TaskDistributionChart data={pieData} />
-
-        {/* Metrics Card */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Key Metrics</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-6">
-            <div>
-              <p className="text-sm font-medium mb-2">Completion Rate</p>
-              <div className="flex items-baseline gap-2">
-                <span className="text-3xl font-bold">{completionRate}%</span>
-                <span className="text-sm text-muted-foreground">of tasks completed</span>
-              </div>
-            </div>
-            <Separator />
-            <div>
-              <p className="text-sm font-medium mb-2">Active Tasks</p>
-              <div className="flex items-baseline gap-2">
-                <span className="text-3xl font-bold">{activeTasks}</span>
-                <span className="text-sm text-muted-foreground">tasks in progress</span>
-              </div>
-            </div>
-            <Separator />
-            <div>
-              <p className="text-sm font-medium mb-2">Total Tasks</p>
-              <div className="flex items-baseline gap-2">
-                <span className="text-3xl font-bold">{totalTasks}</span>
-                <span className="text-sm text-muted-foreground">tasks tracked</span>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-
-      {/* Task Lists */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* Active Tasks */}
-        <div>
-          <h2 className="text-2xl font-semibold mb-4">Active Tasks</h2>
-          <div className="space-y-4">
-            {ongoingTasks.map(task => (
-              <TaskCard key={task.id} task={task} />
-            ))}
-            {ongoingTasks.length === 0 && (
-              <p className="text-muted-foreground text-center py-4">No active tasks</p>
-            )}
-          </div>
+    <div>
+      <Navbar />
+      <main className="min-h-screen p-4 md:p-8 lg:p-24 max-w-7xl mx-auto">
+        <div className="flex items-center justify-between mb-8">
+          <h1 className="text-3xl font-bold">Alice Henriksson's Tasks</h1>
+          <LogoutButton />
+        </div>
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between mb-8">
+          <Tabs defaultValue="overview" className="w-full sm:w-[400px]">
+            <TabsList className="w-full">
+              <TabsTrigger value="overview" className="flex-1">Overview</TabsTrigger>
+              <TabsTrigger value="tasks" className="flex-1" asChild>
+                <Link href="/tasks">Tasks</Link>
+              </TabsTrigger>
+            </TabsList>
+          </Tabs>
+          <TaskDialog 
+            trigger={
+              <Button variant="blue" className="w-full sm:w-auto">
+                Add Task
+              </Button>
+            }
+          />
         </div>
 
-        {/* Previous Tasks */}
-        <div>
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-2xl font-semibold">Previous Tasks</h2>
-            <Link 
-              href="/tasks" 
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-            >
-              View all →
-            </Link>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+          <TaskDistributionChart data={pieData} />
+
+          {/* Metrics Card */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Key Metrics</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <div>
+                <p className="text-sm font-medium mb-2">Completion Rate</p>
+                <div className="flex items-baseline gap-2">
+                  <span className="text-3xl font-bold">{completionRate}%</span>
+                  <span className="text-sm text-muted-foreground">of tasks completed</span>
+                </div>
+              </div>
+              <Separator />
+              <div>
+                <p className="text-sm font-medium mb-2">Active Tasks</p>
+                <div className="flex items-baseline gap-2">
+                  <span className="text-3xl font-bold">{activeTasks}</span>
+                  <span className="text-sm text-muted-foreground">tasks in progress</span>
+                </div>
+              </div>
+              <Separator />
+              <div>
+                <p className="text-sm font-medium mb-2">Total Tasks</p>
+                <div className="flex items-baseline gap-2">
+                  <span className="text-3xl font-bold">{totalTasks}</span>
+                  <span className="text-sm text-muted-foreground">tasks tracked</span>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Task Lists */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Active Tasks */}
+          <div>
+            <h2 className="text-2xl font-semibold mb-4">Active Tasks</h2>
+            <div className="space-y-4">
+              {ongoingTasks.map(task => (
+                <TaskCard key={task.id} task={task} />
+              ))}
+              {ongoingTasks.length === 0 && (
+                <p className="text-muted-foreground text-center py-4">No active tasks</p>
+              )}
+            </div>
           </div>
-          <div className="space-y-4">
-            {previousTasks.map(task => (
-              <TaskCard key={task.id} task={task} />
-            ))}
-            {previousTasks.length === 0 && (
-              <p className="text-muted-foreground text-center py-4">No previous tasks</p>
-            )}
+
+          {/* Previous Tasks */}
+          <div>
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-2xl font-semibold">Previous Tasks</h2>
+              <Link 
+                href="/tasks" 
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+              >
+                View all →
+              </Link>
+            </div>
+            <div className="space-y-4">
+              {previousTasks.map(task => (
+                <TaskCard key={task.id} task={task} />
+              ))}
+              {previousTasks.length === 0 && (
+                <p className="text-muted-foreground text-center py-4">No previous tasks</p>
+              )}
+            </div>
           </div>
         </div>
-      </div>
-    </main>
+      </main>
+    </div>
   );
 }
